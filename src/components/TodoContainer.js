@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodosList from "./TodosList";
 import Header from "./Header";
+import InputTodo from "./InputTodo";
 
 const TodoContainer = () => {
   const initialState = [
@@ -35,9 +36,19 @@ const TodoContainer = () => {
     setTodos([...newTodos]);
   };
 
+  const addTodoItem = title => {
+    const newTodo = {
+      id: new Date(),
+      title: title,
+      completed: false
+    };
+    setTodos([...todos, newTodo]);
+  };
+
   return (
     <div>
       <Header />
+      <InputTodo addTodoItem={addTodoItem} />
       <TodosList
         todos={todos}
         handleInputChange={handleInputChange}
